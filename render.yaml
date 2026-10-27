@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: gedeuffa-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn --workers 2 --bind 0.0.0.0:$PORT 'backend:create_app()'
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: RATELIMIT_STORAGE_URI
+        sync: false
+      - key: EDGE_PROXY_SECRET
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: TRUSTED_PROXY_COUNT
+        value: "0"

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Save and Leave Confirmation — Gede’uffa Language Project</title>
+<!-- Google Fonts: Plus Jakarta Sans & Newsreader -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#141e18",
+            "secondary": "#7b580b",
+            "surface-bright": "#f1fcf3",
+            "error": "#ba1a1a",
+            "tertiary-container": "#003b26",
+            "tertiary-fixed-dim": "#95d4b2",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "background": "#f1fcf3",
+            "outline": "#727974",
+            "surface-dim": "#d1ddd4",
+            "primary-fixed": "#c8ead7",
+            "primary-container": "#1a382b",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#b0f1cd",
+            "on-secondary-fixed-variant": "#5e4200",
+            "surface": "#f1fcf3",
+            "on-primary-fixed": "#022115",
+            "surface-container-highest": "#dae5dc",
+            "inverse-surface": "#29332c",
+            "on-secondary-fixed": "#271900",
+            "on-background": "#141e18",
+            "on-secondary-container": "#775607",
+            "on-primary-container": "#81a291",
+            "primary": "#032217",
+            "surface-variant": "#dae5dc",
+            "on-tertiary-fixed-variant": "#0e5137",
+            "on-tertiary-container": "#6aa788",
+            "secondary-container": "#fccd78",
+            "tertiary": "#002315",
+            "on-surface-variant": "#424844",
+            "primary-fixed-dim": "#adcebc",
+            "secondary-fixed-dim": "#edc06c",
+            "outline-variant": "#c1c8c2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e0ebe2",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#e8f4ea",
+            "surface-container": "#e5f1e7",
+            "surface-container-low": "#ebf7ed",
+            "surface-tint": "#466556",
+            "inverse-primary": "#adcebc",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdea7",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#2f4d3f",
+            "on-tertiary-fixed": "#002113"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "margin-lg": "3rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "margin-sm": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Newsreader"],
+            "headline-lg": ["Newsreader"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Newsreader"],
+            "title-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Newsreader"],
+            "headline-lg-mobile": ["Newsreader"],
+            "title-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Newsreader"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-md": ["26px", { "lineHeight": "34px", "fontWeight": "500" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-full flex flex-col font-body-md text-body-md selection:bg-secondary-container selection:text-primary">
+<!-- Slim Focused Header (Task/Confirmation Flow: Full global navigation links suppressed) -->
+<header class="w-full bg-surface-container-lowest shadow-sm">
+<div class="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-lg" data-icon="eco">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg font-bold text-primary tracking-tight">Gede’uffa Language Project</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Linguistic Workspace</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas: Centered Editorial Confirmation Card -->
+<main class="flex-1 flex items-center justify-center px-4 py-12 md:py-16">
+<div class="w-full max-w-xl mx-auto bg-surface-container-lowest rounded-2xl p-8 md:p-12 shadow-sm border border-outline-variant/40 text-center relative overflow-hidden">
+<!-- Subtle Archival Watermark Pattern Accent -->
+<div class="absolute -right-12 -top-12 w-44 h-44 rounded-full bg-surface-container-low opacity-40 pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-secondary-container/10 pointer-events-none"></div>
+<!-- Success Indicator -->
+<div class="relative mx-auto mb-6 w-20 h-20 rounded-full bg-primary-container flex items-center justify-center shadow-sm">
+<!-- Gold Geometric Accent Ring -->
+<div class="absolute inset-0 rounded-full border-2 border-secondary-container opacity-40 scale-105"></div>
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-secondary-container shadow-inner">
+<span class="material-symbols-outlined text-3xl" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Celebratory Heading -->
+<h1 class="font-headline-lg text-headline-lg text-primary mb-3">
+        Your Contribution Has Been Saved.
+      </h1>
+<!-- Supporting Editorial Narrative -->
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto leading-relaxed">
+        Thank you for helping preserve Gede’uffa. Your contribution helps grow a shared language resource for future generations.
+      </p>
+<!-- Session Summary Card -->
+<div class="my-8 p-6 rounded-xl bg-surface-container-low border border-outline-variant/40 text-left">
+<div class="flex items-center justify-between pb-3 mb-4 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="receipt_long">receipt_long</span>
+<span class="font-title-md text-title-md text-primary">Session Overview</span>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-semibold tracking-wider uppercase">
+            Committed
+          </span>
+</div>
+<ul class="space-y-3.5">
+<li class="flex items-start justify-between gap-4 text-body-sm">
+<div class="flex items-center gap-2.5 text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-base text-primary" data-icon="translate">translate</span>
+<span>Sentences Translated Today</span>
+</div>
+<span class="font-title-md text-body-md text-primary font-semibold whitespace-nowrap">3 sentences</span>
+</li>
+<li class="flex items-start justify-between gap-4 text-body-sm">
+<div class="flex items-center gap-2.5 text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="auto_stories">auto_stories</span>
+<span>Estimated Archival Contribution</span>
+</div>
+<span class="font-title-md text-body-md text-primary font-semibold whitespace-nowrap">42 words in Gede’uffa</span>
+</li>
+<li class="flex items-start justify-between gap-4 text-body-sm">
+<div class="flex items-center gap-2.5 text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-base text-primary" data-icon="location_on">location_on</span>
+<span>Dialect Metadata Tagged</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface bg-surface-container px-2 py-0.5 rounded text-right">Dilla Highland variant</span>
+</li>
+<li class="flex items-start justify-between gap-4 text-body-sm pt-2 border-t border-outline-variant/20">
+<div class="flex items-center gap-2.5 text-on-surface-variant font-body-sm">
+<span class="material-symbols-outlined text-base text-primary" data-icon="cloud_done">cloud_done</span>
+<span>Status</span>
+</div>
+<span class="font-body-sm text-body-sm text-primary font-medium text-right flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Securely synced to Community Review Queue
+            </span>
+</li>
+</ul>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-1">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary-container text-on-primary font-title-md text-title-md hover:bg-tertiary-container transition-all duration-200 active:scale-95 shadow-sm" href="#">
+<span>Return to Homepage</span>
+<span class="material-symbols-outlined text-base" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-primary font-title-md text-title-md hover:bg-surface-container-low hover:border-primary-container transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-base" data-icon="edit_note">edit_note</span>
+<span>Contribute More Sentences</span>
+</a>
+</div>
+<!-- Community Note -->
+<div class="mt-8 pt-6 border-t border-outline-variant/30 flex items-start justify-center gap-2.5 text-left">
+<span class="material-symbols-outlined text-secondary text-lg shrink-0 mt-0.5" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Your submissions will be reviewed by elder native speakers and community linguists. You can return at any time to contribute more.
+        </p>
+</div>
+</div>
+</main>
+<!-- Minimalist Footer (Derived from Shared Components Footer Specs) -->
+<footer class="w-full bg-surface-container-low border-t border-outline-variant/40 py-8 px-6 md:px-12 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        © 2025 Gede’uffa Language Project. Dedicated to ancestral heritage preservation and open linguistic science.
+      </p>
+<div class="flex items-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="font-label-sm text-label-sm text-primary font-semibold hover:underline flex items-center gap-1" href="#">
+<span>Ethical Data Charter</span>
+<span class="material-symbols-outlined text-xs" data-icon="verified_user">verified_user</span>
+</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Phonetic Guidelines</a>
+</div>
+</div>
+</footer>
+</body></html>

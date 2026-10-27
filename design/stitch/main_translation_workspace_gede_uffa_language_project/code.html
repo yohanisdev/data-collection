@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gede’uffa Language Project - Linguistic Workspace</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Newsreader & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#141e18",
+            "secondary": "#7b580b",
+            "surface-bright": "#f1fcf3",
+            "error": "#ba1a1a",
+            "tertiary-container": "#003b26",
+            "tertiary-fixed-dim": "#95d4b2",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "background": "#f1fcf3",
+            "outline": "#727974",
+            "surface-dim": "#d1ddd4",
+            "primary-fixed": "#c8ead7",
+            "primary-container": "#1a382b",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#b0f1cd",
+            "on-secondary-fixed-variant": "#5e4200",
+            "surface": "#f1fcf3",
+            "on-primary-fixed": "#022115",
+            "surface-container-highest": "#dae5dc",
+            "inverse-surface": "#29332c",
+            "on-secondary-fixed": "#271900",
+            "on-secondary-container": "#775607",
+            "on-primary-container": "#81a291",
+            "primary": "#032217",
+            "surface-variant": "#dae5dc",
+            "on-tertiary-fixed-variant": "#0e5137",
+            "on-tertiary-container": "#6aa788",
+            "secondary-container": "#fccd78",
+            "tertiary": "#002315",
+            "on-surface-variant": "#424844",
+            "primary-fixed-dim": "#adcebc",
+            "secondary-fixed-dim": "#edc06c",
+            "outline-variant": "#c1c8c2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e0ebe2",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#e8f4ea",
+            "surface-container": "#e5f1e7",
+            "surface-container-low": "#ebf7ed",
+            "surface-tint": "#466556",
+            "inverse-primary": "#adcebc",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdea7",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#2f4d3f",
+            "on-tertiary-fixed": "#002113"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "margin-lg": "3rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "margin-sm": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Newsreader"],
+            "headline-lg": ["Newsreader"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Newsreader"],
+            "title-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Newsreader"],
+            "headline-lg-mobile": ["Newsreader"],
+            "title-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Newsreader"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-md": ["26px", { "lineHeight": "34px", "fontWeight": "500" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    textarea:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-surface-container-low text-on-surface antialiased flex flex-col justify-between selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Slim Top Navigation Shell for Dedicated Workspace -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/90 backdrop-blur-md shadow-sm">
+<div class="max-w-7xl mx-auto h-16 px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4">
+<!-- Left: Wordmark & Workspace Anchor -->
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-2.5 text-primary group transition-all duration-200" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold tracking-tight text-primary leading-tight">Gede’uffa Language Project</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium tracking-normal">Linguistic Workspace</span>
+</div>
+</a>
+</div>
+<!-- Center: Session Progress Pill -->
+<div class="hidden md:flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md font-medium text-on-surface">Sentence 3 of your session</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-md text-label-md text-on-surface-variant">2 recorded today</span>
+</div>
+<!-- Right: Contributor Profile & Exit Action -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2.5 py-1 px-2.5 rounded-lg bg-surface-container-low/70 border border-outline-variant/30">
+<div class="w-7 h-7 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-title-md text-label-md font-bold">
+            AT
+          </div>
+<div class="hidden sm:flex flex-col text-left">
+<span class="font-title-md text-label-md font-semibold text-primary leading-none">Abebe T.</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant leading-tight">Dilla Highland</span>
+</div>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/50 text-on-surface-variant hover:text-error hover:border-error/40 hover:bg-error-container/20 transition-all duration-150 font-label-md text-label-md" id="exit-btn" onclick="openExitModal()">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span class="hidden sm:inline">Exit Session</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas: Distraction-free Editorial Translation Workspace -->
+<main class="flex-1 w-full max-w-3xl mx-auto py-8 px-4 sm:px-6 flex flex-col justify-center">
+<!-- Mobile progress bar indicator -->
+<div class="md:hidden mb-4 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm px-1">
+<span>Sentence 3 of your session</span>
+<span class="text-primary font-semibold">2 recorded today</span>
+</div>
+<!-- Translation Card -->
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-sm p-6 sm:p-8 md:p-10 transition-all duration-300 relative">
+<!-- Language Direction & Sentence Meta Header -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold border border-outline-variant/30">
+<span>English</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+<span>Gede’uffa</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider">Sentence ID #0421</span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary-fixed/40 text-primary-container border border-primary-fixed-dim/40 font-label-sm text-label-sm uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            Ready for Translation
+          </div>
+</div>
+</div>
+<!-- English Sentence Source Container -->
+<div class="mt-6">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold tracking-wider flex items-center gap-1.5">
+            ENGLISH SENTENCE
+          </span>
+<button class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm py-0.5 px-2 rounded hover:bg-surface-container" title="Listen to pronunciation reference" type="button">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span>Listen</span>
+</button>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 relative group">
+<blockquote class="font-headline-sm text-headline-sm text-on-surface font-normal italic leading-relaxed text-balance">
+            “When the morning mist blankets the enset groves, the elders convene under the sycamore to seek counsel.”
+          </blockquote>
+<div class="mt-4 pt-3 border-t border-outline-variant/20 flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">park</span>
+<span>Highland agroforestry &amp; communal governance context.</span>
+</div>
+</div>
+</div>
+<!-- Gede’uffa Translation Input Section -->
+<div class="mt-8">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+<label class="font-title-md text-title-md font-semibold text-primary" for="gedeuffa-translation">
+            Your Gede’uffa translation
+          </label>
+<!-- Orthography Switcher -->
+<div class="inline-flex items-center p-0.5 rounded-lg bg-surface-container border border-outline-variant/30">
+<button class="px-2.5 py-1 text-label-sm font-label-sm rounded-md bg-surface-container-lowest text-primary font-semibold shadow-xs" id="script-latin" type="button">
+              Latin Orthography
+            </button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm rounded-md text-on-surface-variant hover:text-primary transition-colors" id="script-fidel" type="button">
+              ፊደል (Ethiopic)
+            </button>
+</div>
+</div>
+<div class="relative">
+<textarea class="w-full min-h-[148px] p-5 rounded-xl border border-outline-variant/60 bg-surface-container-lowest font-body-lg text-body-lg text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary-container focus:ring-2 focus:ring-primary-container/15 transition-all resize-y" id="gedeuffa-translation" placeholder="Write your translation here in natural, conversational Gede’uffa..." rows="5"></textarea>
+</div>
+<!-- Linguistic Guideline Notification Box -->
+<div class="mt-3.5 p-3.5 rounded-xl bg-secondary-fixed/20 border border-secondary-fixed-dim/50 flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">nature</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong class="font-semibold text-primary">Guideline:</strong> Aim for natural, idiomatic Gede’uffa as spoken in your community, rather than a rigid word-for-word translation. Dialect variations and local expressions are deeply valued.
+          </p>
+</div>
+<!-- Real-time Autosave & Word Count Indicator -->
+<div class="mt-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm px-1">
+<div class="flex items-center gap-1.5 text-tertiary-fixed-dim/90 font-medium">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span class="text-on-surface-variant" id="autosave-status">Draft auto-saved 10 seconds ago</span>
+</div>
+<div class="text-on-surface-variant/80">
+<span id="char-counter">0</span> characters
+          </div>
+</div>
+</div>
+<!-- Action Footer with Safeguards -->
+<div class="mt-8 pt-6 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-outline-variant/60 text-primary hover:bg-surface-container font-label-md text-label-md font-semibold transition-all duration-150 active:scale-98" onclick="openExitModal()" type="button">
+            Save &amp; Leave
+          </button>
+<button class="text-on-surface-variant hover:text-error hover:underline transition-colors font-label-md text-label-md py-2 px-1 text-center sm:text-left whitespace-nowrap" title="Mark if phrase contains unresolvable ambiguity or complex idiom" type="button">
+            Flag Complex Idiom
+          </button>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="px-4 py-2.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-label-md text-label-md font-medium" type="button">
+            Skip Sentence
+          </button>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold shadow-sm hover:bg-primary transition-all duration-200 active:scale-95 group" id="confirm-next-btn" type="button">
+<span>Confirm &amp; Next</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Helper Shortcut Tray -->
+<div class="mt-6 flex items-center justify-center gap-6 text-on-surface-variant font-label-sm text-label-sm text-center">
+<div class="flex items-center gap-1.5">
+<kbd class="px-2 py-0.5 rounded bg-surface-container-lowest border border-outline-variant/50 text-on-surface shadow-xs font-mono text-[11px]">⌘</kbd>
+<span>+</span>
+<kbd class="px-2 py-0.5 rounded bg-surface-container-lowest border border-outline-variant/50 text-on-surface shadow-xs font-mono text-[11px]">Enter</kbd>
+<span class="ml-1 text-on-surface-variant">to confirm and move to next</span>
+</div>
+<span class="hidden sm:inline text-outline-variant">•</span>
+<div class="hidden sm:flex items-center gap-1.5">
+<kbd class="px-2 py-0.5 rounded bg-surface-container-lowest border border-outline-variant/50 text-on-surface shadow-xs font-mono text-[11px]">Esc</kbd>
+<span class="ml-1 text-on-surface-variant">to pause session</span>
+</div>
+</div>
+</main>
+<!-- Quiet Micro-Footer -->
+<footer class="w-full py-4 px-6 max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-body-sm text-body-sm text-[12px] opacity-75">
+<p>© 2025 Gede’uffa Language Project • Oral Archive Corpus v1.2</p>
+<div class="flex items-center gap-4 mt-2 sm:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Ethical Data Charter</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="#">Phonetic Help</a>
+</div>
+</footer>
+<!-- Subtle Confirmation Safeguard Modal (Triggered by Save & Leave / Exit) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4 hidden transition-opacity duration-200" id="exit-modal">
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/50 max-w-md w-full p-6 sm:p-8 shadow-xl transform transition-transform">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed/40 text-secondary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[24px]">bookmark_added</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">Save progress and exit?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+        Your current draft for Sentence #0421 has been securely synchronized. You can resume your linguistic contribution journey anytime.
+      </p>
+<div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-3">
+<button class="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container font-label-md text-label-md font-medium transition-colors" onclick="closeExitModal()" type="button">
+          Keep Working
+        </button>
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-primary-container text-surface-container-lowest hover:bg-primary font-label-md text-label-md font-semibold transition-colors" onclick="confirmExit()" type="button">
+          Confirm &amp; Exit
+        </button>
+</div>
+</div>
+</div>
+<!-- Inline Script for Workspace Micro-interactions & Zero Data Loss Logic -->
+<script>
+    const textarea = document.getElementById('gedeuffa-translation');
+    const charCounter = document.getElementById('char-counter');
+    const autosaveStatus = document.getElementById('autosave-status');
+    const modal = document.getElementById('exit-modal');
+    const scriptLatin = document.getElementById('script-latin');
+    const scriptFidel = document.getElementById('script-fidel');
+
+    // Restore cached draft from localStorage if available
+    const STORAGE_KEY = 'gedeuffa_sentence_0421_draft';
+    const savedDraft = localStorage.getItem(STORAGE_KEY);
+    if (savedDraft) {
+      textarea.value = savedDraft;
+      charCounter.textContent = savedDraft.length;
+    }
+
+    // Input listening with real-time feedback and autosave
+    let autosaveTimeout;
+    textarea.addEventListener('input', (e) => {
+      const text = e.target.value;
+      charCounter.textContent = text.length;
+      
+      autosaveStatus.textContent = 'Saving draft...';
+      autosaveStatus.classList.remove('text-on-surface-variant');
+      autosaveStatus.classList.add('text-secondary');
+
+      clearTimeout(autosaveTimeout);
+      autosaveTimeout = setTimeout(() => {
+        localStorage.setItem(STORAGE_KEY, text);
+        autosaveStatus.textContent = 'Draft auto-saved just now';
+        autosaveStatus.classList.remove('text-secondary');
+        autosaveStatus.classList.add('text-on-surface-variant');
+      }, 600);
+    });
+
+    // Keyboard Shortcuts (Cmd/Ctrl + Enter to Submit)
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+        e.preventDefault();
+        submitSentence();
+      }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeExitModal();
+      }
+    });
+
+    // Script Toggle Helper Interaction
+    scriptLatin.addEventListener('click', () => {
+      scriptLatin.className = 'px-2.5 py-1 text-label-sm font-label-sm rounded-md bg-surface-container-lowest text-primary font-semibold shadow-xs';
+      scriptFidel.className = 'px-2.5 py-1 text-label-sm font-label-sm rounded-md text-on-surface-variant hover:text-primary transition-colors';
+      textarea.placeholder = "Write your translation here in natural, conversational Gede’uffa...";
+    });
+
+    scriptFidel.addEventListener('click', () => {
+      scriptFidel.className = 'px-2.5 py-1 text-label-sm font-label-sm rounded-md bg-surface-container-lowest text-primary font-semibold shadow-xs';
+      scriptLatin.className = 'px-2.5 py-1 text-label-sm font-label-sm rounded-md text-on-surface-variant hover:text-primary transition-colors';
+      textarea.placeholder = "በገዴኡፋ ቋንቋ ትርጉምዎን እዚህ ይጻፉ...";
+    });
+
+    function submitSentence() {
+      const val = textarea.value.trim();
+      if (!val) {
+        textarea.focus();
+        textarea.classList.add('ring-2', 'ring-secondary');
+        setTimeout(() => textarea.classList.remove('ring-2', 'ring-secondary'), 800);
+        return;
+      }
+      // Feedback pulse on submit button
+      const btn = document.getElementById('confirm-next-btn');
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Submitting...</span>`;
+      setTimeout(() => {
+        localStorage.removeItem(STORAGE_KEY);
+        textarea.value = '';
+        charCounter.textContent = '0';
+        btn.innerHTML = `<span>Saved!</span><span class="material-symbols-outlined text-[18px]">check</span>`;
+        setTimeout(() => {
+          btn.innerHTML = `<span>Confirm & Next</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span>`;
+          autosaveStatus.textContent = 'Draft auto-saved 10 seconds ago';
+        }, 1000);
+      }, 700);
+    }
+
+    document.getElementById('confirm-next-btn').addEventListener('click', submitSentence);
+
+    // Safeguard Modal controls
+    function openExitModal() {
+      modal.classList.remove('hidden');
+    }
+
+    function closeExitModal() {
+      modal.classList.add('hidden');
+    }
+
+    function confirmExit() {
+      // Simulate safe exit navigation
+      closeExitModal();
+      window.location.href = "#";
+    }
+  </script>
+</body></html>

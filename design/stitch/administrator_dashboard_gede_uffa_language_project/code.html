@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gede’uffa Language Project - Administrator Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#141e18",
+            "secondary": "#7b580b",
+            "surface-bright": "#f1fcf3",
+            "error": "#ba1a1a",
+            "tertiary-container": "#003b26",
+            "tertiary-fixed-dim": "#95d4b2",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "background": "#f1fcf3",
+            "outline": "#727974",
+            "surface-dim": "#d1ddd4",
+            "primary-fixed": "#c8ead7",
+            "primary-container": "#1a382b",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#b0f1cd",
+            "on-secondary-fixed-variant": "#5e4200",
+            "surface": "#f1fcf3",
+            "on-primary-fixed": "#022115",
+            "surface-container-highest": "#dae5dc",
+            "inverse-surface": "#29332c",
+            "on-secondary-fixed": "#271900",
+            "on-secondary-container": "#775607",
+            "on-primary-container": "#81a291",
+            "primary": "#032217",
+            "surface-variant": "#dae5dc",
+            "on-tertiary-fixed-variant": "#0e5137",
+            "on-tertiary-container": "#6aa788",
+            "secondary-container": "#fccd78",
+            "tertiary": "#002315",
+            "on-surface-variant": "#424844",
+            "primary-fixed-dim": "#adcebc",
+            "secondary-fixed-dim": "#edc06c",
+            "outline-variant": "#c1c8c2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e0ebe2",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#e8f4ea",
+            "surface-container": "#e5f1e7",
+            "surface-container-low": "#ebf7ed",
+            "surface-tint": "#466556",
+            "inverse-primary": "#adcebc",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdea7",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#2f4d3f",
+            "on-tertiary-fixed": "#002113"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "margin-lg": "3rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "margin-sm": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Newsreader"],
+            "headline-lg": ["Newsreader"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Newsreader"],
+            "title-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Newsreader"],
+            "headline-lg-mobile": ["Newsreader"],
+            "title-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Newsreader"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-md": ["26px", { "lineHeight": "34px", "fontWeight": "500" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #ebf7ed;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #c1c8c2;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md h-full flex flex-col antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<div class="flex h-full overflow-hidden">
+<!-- SideNavBar (Shared Component implementation) -->
+<aside class="w-64 min-h-screen p-4 flex flex-col justify-between shrink-0 bg-surface-container-low border-r border-outline-variant/40">
+<!-- Top Section -->
+<div class="flex flex-col gap-6">
+<!-- Brand Header -->
+<div class="flex items-center gap-3 px-2 pt-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm" title="Gedeo highland agroforestry emblem badge">
+<span class="material-symbols-outlined text-[22px]" data-icon="park">park</span>
+</div>
+<div class="flex flex-col">
+<h1 class="font-title-md text-title-md font-bold text-primary tracking-tight">Gede’uffa Admin</h1>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">AI Linguistic Corpus v1.2</span>
+</div>
+</div>
+<!-- Navigation Cluster -->
+<nav aria-label="Sidebar Navigation" class="flex flex-col gap-1.5">
+<!-- Overview -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<!-- Sentences (Active based on Sentence #0421 context) -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-surface-container-highest text-primary font-semibold" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Sentences</span>
+</a>
+<!-- Translation Review -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="fact_check">fact_check</span>
+<div class="flex items-center justify-between w-full">
+<span class="font-label-md text-label-md">Translation Review</span>
+<span class="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary-container text-on-secondary-container">386</span>
+</div>
+</a>
+<!-- Approved Dataset -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dataset">dataset</span>
+<span class="font-label-md text-label-md">Approved Dataset</span>
+</a>
+<!-- Contributors -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Contributors</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Footer CTA & Links -->
+<div class="flex flex-col gap-3 pt-4 border-t border-outline-variant/30">
+<!-- Export CTA Button -->
+<button class="w-full py-2.5 px-3 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm hover:bg-primary transition-all active:scale-98">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+<span>Export Dataset (CSV/JSONL)</span>
+</button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+<span class="font-label-sm text-label-sm">Documentation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm">Log Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scroll bg-background">
+<!-- Top Bar / App Header -->
+<header class="h-16 px-6 md:px-8 border-b border-outline-variant/40 bg-surface-container-lowest flex items-center justify-between sticky top-0 z-20 shadow-sm">
+<!-- Breadcrumb & Global Search -->
+<div class="flex items-center gap-6 flex-1 max-w-2xl">
+<div class="flex items-center gap-2 text-on-surface-variant whitespace-nowrap">
+<span class="font-label-md text-label-md hover:text-primary cursor-pointer transition-colors">Dataset Explorer</span>
+<span class="text-outline-variant">/</span>
+<span class="font-label-md text-label-md font-semibold text-primary">Sentence #0421 Review</span>
+</div>
+<!-- Global Search Input -->
+<div class="relative w-full hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]" data-icon="search">search</span>
+<input class="w-full pl-9 pr-4 py-1.5 bg-surface-container-low border border-outline-variant/60 rounded-lg text-on-surface placeholder:text-outline text-body-sm font-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search English sentence, ID, or contributor..." type="text"/>
+</div>
+</div>
+<!-- Controls: Filters & Profile -->
+<div class="flex items-center gap-3 md:gap-4 pl-4">
+<!-- Status Dropdown Filter -->
+<div class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 bg-surface-container border border-outline-variant/40 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Status:</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">Pending Review</span>
+<span class="material-symbols-outlined text-[16px] text-outline cursor-pointer" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Dialect Dropdown Filter -->
+<div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-surface-container border border-outline-variant/40 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dialect:</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">All Zones</span>
+<span class="material-symbols-outlined text-[16px] text-outline cursor-pointer" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Divider -->
+<div class="h-6 w-px bg-outline-variant/40 hidden md:block"></div>
+<!-- Admin Profile Badge -->
+<div class="flex items-center gap-2.5 pl-1">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-label-sm border border-secondary/20">
+              HM
+            </div>
+<div class="hidden sm:flex flex-col text-left">
+<span class="font-title-md text-title-md text-primary text-[13px] leading-tight font-semibold">Dr. Hailu M.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px] leading-tight">Lead Linguist</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Workspace Container -->
+<main class="p-6 md:p-8 max-w-7xl mx-auto w-full flex flex-col gap-8">
+<!-- Summary Metric Cards (4 Grid) -->
+<section aria-labelledby="metrics-heading">
+<h2 class="sr-only" id="metrics-heading">Corpus Summary Metrics</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/40 shadow-sm flex flex-col justify-between hover:border-outline-variant transition-colors">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Total English Sentences</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="format_quote">format_quote</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">10,000</div>
+<div class="font-body-sm text-body-sm text-outline mt-0.5">Baseline CSV corpus</div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/40 shadow-sm flex flex-col justify-between hover:border-outline-variant transition-colors">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Submitted Translations</span>
+<span class="w-8 h-8 rounded-lg bg-primary-fixed/40 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="record_voice_over">record_voice_over</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">3,420</div>
+<div class="font-body-sm text-body-sm text-tertiary font-medium mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+<span>+142 this week</span>
+</div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-secondary/30 bg-gradient-to-br from-surface-container-lowest to-secondary-fixed/10 shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-secondary font-semibold">Sentences Awaiting Review</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="pending_actions">pending_actions</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-md text-headline-md font-bold text-secondary tracking-tight">386</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Requires elder/linguist sign-off</div>
+</div>
+</div>
+<!-- Metric Card 4 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/40 shadow-sm flex flex-col justify-between hover:border-outline-variant transition-colors">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Approved Translations</span>
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified">verified</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">2,894</div>
+<div class="font-body-sm text-body-sm text-outline mt-0.5">Ready for tokenizer &amp; training</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Workflow: Source Sentence Card & Multi-Submission Review -->
+<section aria-labelledby="workflow-heading" class="flex flex-col gap-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold" id="workflow-heading">
+                Sentence Curation &amp; Linguistic Review
+              </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Verify semantics, morphological integrity, and dialect authenticity against regional speech norms.
+              </p>
+</div>
+<!-- Navigational Micro-actions -->
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container text-label-md font-label-md flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+<span>Sentence #0420</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container text-label-md font-label-md flex items-center gap-1.5 transition-colors">
+<span>Sentence #0422</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Source Sentence Card (Prominent container) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-sm overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant/40 flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm tracking-wider">
+                  SOURCE #0421
+                </span>
+<span class="font-label-md text-label-md text-on-surface-variant">
+                  Domain: <strong class="text-primary font-semibold">Agriculture &amp; Communal Life</strong>
+</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant">
+                  Syntactic Complexity: Moderate
+                </span>
+</div>
+</div>
+<div class="p-6 md:p-8">
+<blockquote class="font-headline-md text-headline-md text-primary font-serif italic leading-relaxed">
+                “When the morning mist blankets the enset groves, the elders convene under the sycamore to seek counsel.”
+              </blockquote>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex flex-wrap items-center gap-6 text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="info">info</span>
+<span class="font-body-sm text-body-sm">
+<strong>Grammatical notes:</strong> Relative clause with time temporal marker (<em>"When the morning mist..."</em>).
+                  </span>
+</div>
+<div class="flex items-center gap-2 ml-auto text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="history">history</span>
+<span>Extracted from Gedeo Ethnographic Folktale Corpus (1984)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Multi-Submission Review Section -->
+<div class="flex flex-col gap-4">
+<!-- Section Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h3 class="font-title-lg text-title-lg font-semibold text-primary">
+                  3 Submitted Translations from Community
+                </h3>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-primary-fixed/60 text-primary-container border border-primary-container/20">
+                  Multiple submissions preserved independently
+                </span>
+</div>
+<span class="font-body-sm text-body-sm text-outline hidden sm:inline">
+                Evaluate accuracy, vocabulary fidelity &amp; dialect tag
+              </span>
+</div>
+<!-- Cards Container -->
+<div class="flex flex-col gap-4">
+<!-- CARD 1: Selected as Primary Approved -->
+<div class="bg-surface-container-lowest rounded-xl border-l-4 border-l-[#1A382B] border-t border-r border-b border-outline-variant/50 p-6 shadow-sm hover:shadow transition-shadow">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex-1">
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<!-- Badge -->
+<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm font-bold bg-[#2E6B4F1A] text-[#1A382B] border border-[#2E6B4F33] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                        PRIMARY APPROVED
+                      </span>
+<!-- Contributor Info -->
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="account_circle">account_circle</span>
+<strong>Abebe T.</strong> <span class="text-outline">(Dilla Highland)</span>
+</span>
+<span class="text-outline text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-outline">Submitted: Today, 10:14 AM</span>
+</div>
+<!-- Gede'uffa Text -->
+<div class="mt-3">
+<p class="font-headline-sm text-headline-sm text-primary font-serif font-medium">
+                        “Soorrote doobbicci weese kaffu heedo, jaarsanni odaa woro heette gosa hayishshata.”
+                      </p>
+<!-- Phonetic / Linguistic Note -->
+<p class="font-body-sm text-body-sm text-on-surface-variant italic mt-1.5 flex items-center gap-2">
+<span class="font-mono text-[12px] bg-surface-container px-2 py-0.5 rounded text-primary">IPA: /soːr.ro.tɛ doːb.biʧ.ʧi weː.sɛ kaf.fu heː.do/</span>
+<span>— High lexical fidelity with agroforestry terms (<em>weese</em>, <em>odaa</em>).</span>
+</p>
+</div>
+</div>
+<!-- Audio & Actions Column -->
+<div class="flex flex-col sm:flex-row md:flex-col items-start md:items-end justify-between gap-3 shrink-0">
+<!-- Audio playback sample button -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant/40 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>Pronunciation (0:04)</span>
+</button>
+<div class="flex flex-col items-start md:items-end gap-1.5">
+<button class="px-3.5 py-1.5 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md flex items-center gap-1.5 shadow-sm hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Primary Translation</span>
+</button>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Included in main training pair</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 2: Selected as Approved Alternative -->
+<div class="bg-surface-container-lowest rounded-xl border-l-4 border-l-secondary border-t border-r border-b border-outline-variant/50 p-6 shadow-sm hover:shadow transition-shadow">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex-1">
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<!-- Badge -->
+<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm font-bold bg-[#C2822B1A] text-secondary border border-[#C2822B33] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check">check</span>
+                        APPROVED ALTERNATIVE
+                      </span>
+<!-- Contributor Info -->
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="account_circle">account_circle</span>
+<strong>Mihret D.</strong> <span class="text-outline">(Wonsho)</span>
+</span>
+<span class="text-outline text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-outline">Submitted: Yesterday, 3:20 PM</span>
+</div>
+<!-- Gede'uffa Text -->
+<div class="mt-3">
+<p class="font-headline-sm text-headline-sm text-primary font-serif font-medium">
+                        “Bari doobbi weese biyya kaffisu heedhe, manguddoonni odaa jala taa’anii marii godhatu.”
+                      </p>
+<!-- Phonetic / Linguistic Note -->
+<p class="font-body-sm text-body-sm text-on-surface-variant italic mt-1.5 flex items-center gap-2">
+<span class="font-mono text-[12px] bg-surface-container px-2 py-0.5 rounded text-secondary">Dialect Tag: Wonsho Sub-zone</span>
+<span>— Uses local morphosyntactic variation <em>manguddoonni</em> for communal council.</span>
+</p>
+</div>
+</div>
+<!-- Audio & Actions Column -->
+<div class="flex flex-col sm:flex-row md:flex-col items-start md:items-end justify-between gap-3 shrink-0">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm border border-outline-variant/40 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>Pronunciation (0:05)</span>
+</button>
+<div class="flex flex-col items-start md:items-end gap-1.5">
+<button class="px-3 py-1.5 rounded-lg border border-secondary text-secondary bg-secondary-fixed/20 font-label-md text-label-md flex items-center gap-1.5 hover:bg-secondary-fixed/40 transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="alt_route">alt_route</span>
+<span>Marked as Alternative</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Preserved as Wonsho variant</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 3: Rejected / Needs Retake -->
+<div class="bg-surface-container-lowest/70 rounded-xl border-l-4 border-l-error border-t border-r border-b border-outline-variant/40 p-6 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex-1 opacity-90">
+<div class="flex flex-wrap items-center gap-3 mb-2">
+<!-- Badge -->
+<span class="px-2.5 py-1 rounded-md text-label-sm font-label-sm font-bold bg-[#A842321A] text-error border border-[#A8423233] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+                        REJECTED - LOANWORD DRIFT
+                      </span>
+<!-- Contributor Info -->
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="person_outline">person_outline</span>
+<strong>Anonymous Contributor</strong>
+</span>
+<span class="text-outline text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-outline">Submitted: 2 days ago</span>
+</div>
+<!-- Gede'uffa Text -->
+<div class="mt-3">
+<p class="font-headline-sm text-headline-sm text-outline font-serif font-medium line-through decoration-error/50">
+                        “Guyyaa barii mist weese groves blankeeti...”
+                      </p>
+<!-- Feedback note -->
+<div class="mt-2 text-body-sm font-body-sm text-error bg-error-container/40 p-2.5 rounded border border-error/20 flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5" data-icon="report">report</span>
+<span><strong>Linguist Feedback:</strong> Calque error with raw English tokens inserted ('mist', 'groves', 'blankeeti'). Does not respect synthetic agglutinative structure of Gede’uffa.</span>
+</div>
+</div>
+</div>
+<!-- Actions Column -->
+<div class="flex flex-col sm:flex-row md:flex-col items-start md:items-end justify-between gap-3 shrink-0">
+<span class="text-label-sm font-label-sm text-outline italic">No audio provided</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container text-label-sm font-label-sm transition-colors">
+                        Re-evaluate
+                      </button>
+<button class="px-3 py-1.5 rounded-lg bg-error-container text-on-error-container hover:bg-error-container/80 text-label-sm font-label-sm font-semibold flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="delete">delete</span>
+<span>Discard</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Final Dataset Preview & Export Bar (Editorial Archival Spec) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-sm p-6 flex flex-col gap-5">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-outline-variant/30 pb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="data_object">data_object</span>
+<h4 class="font-title-md text-title-md text-primary font-semibold">Structured AI Dataset Record Preview</h4>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-surface-container text-outline">JSONL Tokenizer Format</span>
+</div>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant">
+<span>Record Hash: <code class="font-mono text-primary font-bold">#GDF-0421-E5A</code></span>
+<span class="w-2 h-2 rounded-full bg-[#2E6B4F]"></span>
+<span>Validated Schema</span>
+</div>
+</div>
+<!-- Code/Data Block -->
+<div class="bg-[#12281E] text-[#E8F4EA] p-4 rounded-lg font-mono text-body-sm overflow-x-auto shadow-inner border border-primary-container">
+<pre class="leading-relaxed"><code>{
+  <span class="text-[#EDC06C]">"sentence_id"</span>: <span class="text-[#95D4B2]">"GDF_0421"</span>,
+  <span class="text-[#EDC06C]">"domain"</span>: <span class="text-[#95D4B2]">"agroforestry_traditional_governance"</span>,
+  <span class="text-[#EDC06C]">"source_en"</span>: <span class="text-[#95D4B2]">"When the morning mist blankets the enset groves, the elders convene under the sycamore to seek counsel."</span>,
+  <span class="text-[#EDC06C]">"target_primary_gedeuffa"</span>: <span class="text-[#95D4B2]">"Soorrote doobbicci weese kaffu heedo, jaarsanni odaa woro heette gosa hayishshata."</span>,
+  <span class="text-[#EDC06C]">"target_alternatives"</span>: [
+    {
+      <span class="text-[#EDC06C]">"dialect"</span>: <span class="text-[#95D4B2]">"Wonsho"</span>,
+      <span class="text-[#EDC06C]">"text"</span>: <span class="text-[#95D4B2]">"Bari doobbi weese biyya kaffisu heedhe, manguddoonni odaa jala taa’anii marii godhatu."</span>,
+      <span class="text-[#EDC06C]">"verified_by"</span>: <span class="text-[#95D4B2]">"Dr. Hailu M."</span>
+    }
+  ],
+  <span class="text-[#EDC06C]">"status"</span>: <span class="text-[#95D4B2]">"READY_FOR_PRETRAINING"</span>
+}</code></pre>
+</div>
+<!-- Execution Action Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+<div class="flex items-center gap-2 text-on-surface-variant text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-[#2E6B4F]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Both primary &amp; alternative targets will be compiled into fine-tuning shards.</span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-4 py-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-primary hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="file_download">file_download</span>
+<span>Export Corpus Batch</span>
+</button>
+<button class="flex-1 sm:flex-initial px-6 py-2.5 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary shadow-sm flex items-center justify-center gap-2 transition-all active:scale-95">
+<span>Save Review &amp; Next Sentence</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Dashboard Minimal Clean Sub-footer -->
+<footer class="mt-auto py-6 px-6 md:px-8 border-t border-outline-variant/30 bg-surface-container-low text-on-surface-variant flex flex-col sm:flex-row items-center justify-between gap-4 font-body-sm text-body-sm">
+<div>
+          © 2025 Gede’uffa Language Project. Dedicated to ancestral heritage preservation and open linguistic science.
+        </div>
+<div class="flex items-center gap-4 font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Ethical Data Charter</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors" href="#">Phonetic Guidelines</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors" href="#">Admin Support</a>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

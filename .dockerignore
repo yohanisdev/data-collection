@@ -1,0 +1,11 @@
+.git
+.venv
+__pycache__
+*.py[cod]
+node_modules
+frontend/node_modules
+frontend/dist
+design
+tests
+stitch_gede_uffa_language_platform_prototype.zip
+.env

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gede’uffa Language Project — Preserving Our Language. Building Our Future.</title>
+<!-- Material Symbols Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Editorial Archival Typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration JSON Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#141e18",
+            "secondary": "#7b580b",
+            "surface-bright": "#f1fcf3",
+            "error": "#ba1a1a",
+            "tertiary-container": "#003b26",
+            "tertiary-fixed-dim": "#95d4b2",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "background": "#f1fcf3",
+            "outline": "#727974",
+            "surface-dim": "#d1ddd4",
+            "primary-fixed": "#c8ead7",
+            "primary-container": "#1a382b",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#b0f1cd",
+            "on-secondary-fixed-variant": "#5e4200",
+            "surface": "#f1fcf3",
+            "on-primary-fixed": "#022115",
+            "surface-container-highest": "#dae5dc",
+            "inverse-surface": "#29332c",
+            "on-secondary-fixed": "#271900",
+            "on-background": "#141e18",
+            "on-secondary-container": "#775607",
+            "on-primary-container": "#81a291",
+            "primary": "#032217",
+            "surface-variant": "#dae5dc",
+            "on-tertiary-fixed-variant": "#0e5137",
+            "on-tertiary-container": "#6aa788",
+            "secondary-container": "#fccd78",
+            "tertiary": "#002315",
+            "on-surface-variant": "#424844",
+            "primary-fixed-dim": "#adcebc",
+            "secondary-fixed-dim": "#edc06c",
+            "outline-variant": "#c1c8c2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e0ebe2",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#e8f4ea",
+            "surface-container": "#e5f1e7",
+            "surface-container-low": "#ebf7ed",
+            "surface-tint": "#466556",
+            "inverse-primary": "#adcebc",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdea7",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#2f4d3f",
+            "on-tertiary-fixed": "#002113"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "margin-lg": "3rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "margin-sm": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-xl": [
+              "Newsreader"
+            ],
+            "headline-lg": [
+              "Newsreader"
+            ],
+            "body-md": [
+              "Plus Jakarta Sans"
+            ],
+            "body-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "label-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-md": [
+              "Newsreader"
+            ],
+            "title-md": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-xl-mobile": [
+              "Newsreader"
+            ],
+            "headline-lg-mobile": [
+              "Newsreader"
+            ],
+            "title-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "label-md": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-sm": [
+              "Newsreader"
+            ]
+          },
+          "fontSize": {
+            "body-lg": [
+              "18px",
+              {
+                "lineHeight": "28px",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-xl": [
+              "48px",
+              {
+                "lineHeight": "56px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "500"
+              }
+            ],
+            "headline-lg": [
+              "36px",
+              {
+                "lineHeight": "44px",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "500"
+              }
+            ],
+            "body-md": [
+              "15px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "400"
+              }
+            ],
+            "body-sm": [
+              "13px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "400"
+              }
+            ],
+            "label-sm": [
+              "11px",
+              {
+                "lineHeight": "14px",
+                "letterSpacing": "0.06em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-md": [
+              "26px",
+              {
+                "lineHeight": "34px",
+                "fontWeight": "500"
+              }
+            ],
+            "title-md": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-xl-mobile": [
+              "34px",
+              {
+                "lineHeight": "42px",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "500"
+              }
+            ],
+            "headline-lg-mobile": [
+              "28px",
+              {
+                "lineHeight": "36px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "500"
+              }
+            ],
+            "title-lg": [
+              "18px",
+              {
+                "lineHeight": "26px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "600"
+              }
+            ],
+            "label-md": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "letterSpacing": "0.04em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-sm": [
+              "20px",
+              {
+                "lineHeight": "28px",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- ========================================== -->
+<!-- 1. TOP NAVIGATION BAR (Shared Component)   -->
+<!-- ========================================== -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant/40 shadow-sm backdrop-blur-md">
+<div class="flex justify-between items-center w-full px-6 md:px-12 max-w-7xl mx-auto h-16">
+<!-- Wordmark Brand Anchor -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-surface-container-lowest flex items-center justify-center transition-transform group-hover:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="eco">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="text-title-lg font-title-lg font-bold text-primary tracking-tight">Gede’uffa Language Project</span>
+<span class="text-label-sm font-label-sm text-secondary tracking-widest hidden sm:inline">HIGHLAND LINGUISTIC INITIATIVE</span>
+</div>
+</a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md" href="#about">About the Project</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md" href="#how-it-works">How It Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md" href="#mission">Linguistic Goals</a>
+<a class="text-primary font-semibold border-b-2 border-primary pb-1 text-label-md font-label-md" href="#explorer">Dataset Explorer</a>
+</nav>
+<!-- Right CTAs -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-block text-label-md font-label-md text-on-surface-variant hover:text-primary px-3 py-2 transition-colors" href="#login">
+          Contributor Login
+        </a>
+<a class="inline-flex items-center gap-2 bg-primary-container text-surface-container-lowest hover:bg-tertiary-container text-label-md font-label-md font-semibold px-4 py-2.5 rounded-lg shadow-sm transition-all duration-200 ease-in-out active:scale-95 border border-primary-container" href="#translate">
+<span>Start Translating</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<!-- ========================================== -->
+<!-- 2. HERO SECTION                            -->
+<!-- ========================================== -->
+<section class="relative pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
+<!-- Subtle Cultural Agroforestry Canopy Geometry Pattern -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#1a382b_1px,transparent_1px)] [background-size:24px_24px]"></div>
+<div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Column: Editorial Statement (7 cols) -->
+<div class="lg:col-span-7 flex flex-col items-start">
+<!-- Eyebrow Tag -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/50 text-secondary mb-6">
+<span class="material-symbols-outlined text-xs" data-icon="token">token</span>
+<span class="text-label-sm font-label-sm tracking-wider uppercase font-bold">COMMUNITY-POWERED LINGUISTIC INITIATIVE</span>
+</div>
+<!-- Main Heading -->
+<h1 class="font-headline-xl text-headline-xl text-primary font-medium tracking-tight mb-6 max-w-2xl">
+            Help Build the Future of Gede’uffa.
+          </h1>
+<!-- Tagline Accent Badge -->
+<p class="font-headline-sm text-headline-sm text-secondary italic mb-6">
+            Preserving Our Language. Building Our Future.
+          </p>
+<!-- Supporting Narrative -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed">
+            Join native and fluent speakers across the Gedeo zone and diaspora to safeguard our ancestral mother tongue. Translate everyday sentences to create the first open, high-quality dataset for Gede’uffa-speaking AI technologies.
+          </p>
+<!-- CTA Cluster -->
+<div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-3 bg-primary-container text-surface-container-lowest hover:bg-tertiary-container px-6 py-3.5 rounded-lg font-title-md text-title-md font-semibold transition-all duration-150 active:scale-95 shadow-sm" href="#translate">
+<span>Start Translating</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-surface-container-lowest hover:bg-surface-container text-on-surface border border-outline-variant/80 px-6 py-3.5 rounded-lg font-title-md text-title-md font-medium transition-colors" href="#about">
+<span class="material-symbols-outlined text-base" data-icon="import_contacts">import_contacts</span>
+<span>Learn About the Project</span>
+</a>
+</div>
+<!-- Trust / Cultural Indicator Banner -->
+<div class="mt-10 pt-6 border-t border-outline-variant/40 flex items-start gap-3 w-full">
+<div class="mt-1 flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-xl" data-icon="verified" data-weight="fill">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Preserving over <span class="font-semibold text-primary">10,000 sentences</span> for future generations in partnership with community elders and language scholars.
+            </p>
+</div>
+</div>
+<!-- Right Column: Visual Editorial Card & Linguistic Showcase (5 cols) -->
+<div class="lg:col-span-5 relative">
+<!-- Background Atmospheric Glow -->
+<div class="absolute -top-10 -right-10 w-72 h-72 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Floating Main Workbench Card -->
+<div class="relative bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-lg p-6 sm:p-8 overflow-hidden">
+<!-- Category Accent Stroke -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-container via-secondary to-primary-container"></div>
+<!-- Card Header -->
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-4 mb-6">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Oral Archival Entry #0421</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-label-sm font-label-sm">Dialect: Dilla Highland</span>
+</div>
+<!-- English Source Prompt -->
+<div class="mb-5">
+<span class="text-label-sm font-label-sm text-outline tracking-wider uppercase block mb-1">Source English Sentence</span>
+<p class="font-body-md text-body-md text-on-surface font-medium bg-surface-container-low p-3.5 rounded-lg border border-outline-variant/30">
+                “When the morning mist blankets the enset groves, the elders convene under the sycamore to seek counsel.”
+              </p>
+</div>
+<!-- Gede’uffa Verified Translation -->
+<div class="mb-6">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm text-outline tracking-wider uppercase">Gede’uffa Verified Transcription</span>
+<span class="text-label-sm font-label-sm text-secondary font-mono">IPA: /ɡe.deˈʔuf.fa/</span>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high/60 border border-secondary/30 relative">
+<p class="font-headline-sm text-headline-sm text-primary mb-2 leading-relaxed">
+                  “Soorrote doobbicci weese kaffu heedo, jaarsanni odaa woro heette gosa hayishshata.”
+                </p>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant/30 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="mic" data-weight="fill">mic</span>
+                    Elder Audio Attached (0:04)
+                  </span>
+<span class="text-secondary font-semibold">99.2% Consensus</span>
+</div>
+</div>
+</div>
+<!-- Audio Waveform Graphic Motif -->
+<div class="space-y-2 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/40">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span class="font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="graphic_eq">graphic_eq</span>
+                  Phonetic Acoustic Waveform
+                </span>
+<span class="font-mono text-outline">44.1 kHz • FLAC</span>
+</div>
+<!-- Waveform visualization bars -->
+<div class="h-8 flex items-center gap-1 w-full px-1">
+<div class="w-1.5 h-3 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-5 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-7 bg-secondary rounded-full"></div>
+<div class="w-1.5 h-4 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-6 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-8 bg-secondary rounded-full"></div>
+<div class="w-1.5 h-5 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-3 bg-outline-variant rounded-full"></div>
+<div class="w-1.5 h-6 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-7 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-4 bg-secondary rounded-full"></div>
+<div class="w-1.5 h-2 bg-outline-variant rounded-full"></div>
+<div class="w-1.5 h-5 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-8 bg-primary-container rounded-full"></div>
+<div class="w-1.5 h-6 bg-secondary rounded-full"></div>
+<div class="w-1.5 h-4 bg-outline-variant rounded-full"></div>
+<div class="w-1.5 h-3 bg-outline-variant rounded-full"></div>
+<div class="w-1.5 h-2 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+<!-- Floating Sub-Badge -->
+<div class="mt-4 flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="lock_open">lock_open</span> Open CC-BY 4.0 Linguistic Commons
+              </span>
+<span>Dataset Spec v1.2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 3. HOW IT WORKS SECTION                    -->
+<!-- ========================================== -->
+<section class="py-20 bg-surface-container border-y border-outline-variant/30" id="how-it-works">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<!-- Section Header -->
+<div class="max-w-2xl mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high text-secondary text-label-sm font-label-sm uppercase tracking-wider mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="psychology">psychology</span>
+          Contribution Methodology
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-primary font-medium tracking-tight mb-4">
+          A Simple, Dignified Way to Contribute
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Every sentence you translate directly trains open language models and preserves cultural heritage.
+        </p>
+</div>
+<!-- 3 Structured Step Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Step 01 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 hover:border-outline-variant transition-all duration-200 flex flex-col justify-between shadow-sm relative group">
+<div class="mb-6">
+<div class="flex items-center justify-between mb-6">
+<span class="font-headline-md text-headline-md font-semibold text-secondary">01</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="badge">badge</span>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-semibold mb-3">Introduce Yourself</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Share your name, community or residence, and occupation so contributions are credited with care.
+            </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex items-center gap-2 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="fingerprint">fingerprint</span>
+            Respectful Contributor Attribution
+          </div>
+</div>
+<!-- Step 02 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 hover:border-outline-variant transition-all duration-200 flex flex-col justify-between shadow-sm relative group">
+<div class="mb-6">
+<div class="flex items-center justify-between mb-6">
+<span class="font-headline-md text-headline-md font-semibold text-secondary">02</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="translate">translate</span>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-semibold mb-3">Translate Sentences</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Receive an English sentence and write natural, idiomatic Gede’uffa in a focused, comfortable interface.
+            </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex items-center gap-2 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="keyboard">keyboard</span>
+            Latin &amp; Ethiopic Fidel Supported
+          </div>
+</div>
+<!-- Step 03 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 hover:border-outline-variant transition-all duration-200 flex flex-col justify-between shadow-sm relative group">
+<div class="mb-6">
+<div class="flex items-center justify-between mb-6">
+<span class="font-headline-md text-headline-md font-semibold text-secondary">03</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="fact_check">fact_check</span>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-semibold mb-3">Help Preserve Gede’uffa</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Linguists and elders review submissions to form an authoritative, open AI-ready corpus.
+            </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex items-center gap-2 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="gavel">gavel</span>
+            Community Elders Council Vetted
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 4. PROJECT MISSION SECTION                 -->
+<!-- ========================================== -->
+<section class="py-24 bg-surface-container-low" id="mission">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-widest block mb-3 font-bold">ETHICAL ARCHIVAL MANDATE</span>
+<h2 class="font-headline-lg text-headline-lg text-primary font-medium tracking-tight mb-4">
+          Guiding Pillars of Our Heritage Initiative
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Grounded in the ancestral agroforestry landscape of the Gedeo highlands, combining ancient oral traditions with state-of-the-art computational linguistics.
+        </p>
+</div>
+<!-- 3 Pillars Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl text-secondary" data-icon="history_edu">history_edu</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-bold mb-3">Language Preservation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Documenting nuanced idioms, proverbs, and vernacular vocabulary before linguistic erosion occurs. We archive everyday conversational patterns and specialized agroforestry terminology.
+          </p>
+<ul class="space-y-2 text-body-sm font-body-sm text-on-surface-variant">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+              High-resolution audio recording
+            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+              Standardized phonetic IPA mapping
+            </li>
+</ul>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl text-secondary" data-icon="groups">groups</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-bold mb-3">Community Ownership</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Ensuring the Gedeo people govern and participate in their own language technology without external extraction. Elders maintain sovereign oversight over sensitive oral customs.
+          </p>
+<ul class="space-y-2 text-body-sm font-body-sm text-on-surface-variant">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+              Ethical Data Charter compliance
+            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+              Direct community attribution
+            </li>
+</ul>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl text-secondary" data-icon="neurology">neurology</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-bold mb-3">Accessible AI Technology</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Paving the pathway for voice assistants, educational software, and translation tools in native Gede’uffa. Equipping modern digital interfaces to speak our language fluently.
+          </p>
+<ul class="space-y-2 text-body-sm font-body-sm text-on-surface-variant">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+              Zero-shot benchmark datasets
+            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+              Open-weight transformer models
+            </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 5. CONTRIBUTION IMPACT SECTION (METRICS)   -->
+<!-- ========================================== -->
+<section class="py-20 bg-surface-container-high/50 border-t border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<!-- Illustrative Disclaimer Banner -->
+<div class="max-w-xl mx-auto mb-12 p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/40 text-center shadow-xs">
+<p class="text-label-sm font-label-sm text-outline flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="info">info</span>
+          Metrics displayed below represent illustrative prototype projections for research deployment.
+        </p>
+</div>
+<!-- 4 Stat Cards Grid -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 text-center shadow-sm">
+<div class="text-label-sm font-label-sm text-outline uppercase tracking-wider mb-2">Core Target</div>
+<div class="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight mb-1">10,000</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Total English Core Corpus</p>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 text-center shadow-sm">
+<div class="text-label-sm font-label-sm text-secondary uppercase tracking-wider mb-2">In Progress</div>
+<div class="font-headline-xl text-headline-xl text-secondary font-semibold tracking-tight mb-1">3,420+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Community Translations Recorded</p>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 text-center shadow-sm">
+<div class="text-label-sm font-label-sm text-outline uppercase tracking-wider mb-2">Participants</div>
+<div class="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight mb-1">480+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Active Fluent Contributors</p>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 text-center shadow-sm">
+<div class="text-label-sm font-label-sm text-outline uppercase tracking-wider mb-2">Rigorous Quality</div>
+<div class="font-headline-xl text-headline-xl text-primary font-semibold tracking-tight mb-1">98.4%</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Community &amp; Elder Consensus</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 6. CALL TO ACTION BANNER                   -->
+<!-- ========================================== -->
+<section class="py-20 bg-primary-container text-surface-container-lowest relative overflow-hidden" id="translate">
+<!-- Atmospheric Ambient Lighting -->
+<div class="absolute -bottom-20 -left-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
+<div class="max-w-3xl mx-auto">
+<span class="inline-block px-3.5 py-1 rounded-full bg-surface-container-highest/10 text-secondary-container text-label-sm font-label-sm uppercase tracking-widest mb-6 font-semibold border border-secondary-container/20">
+          BECOME A LANGUAGE CHAMPION
+        </span>
+<h2 class="font-headline-xl text-headline-xl font-medium tracking-tight mb-6 text-surface-container-lowest">
+          Add Your Voice to the Gede’uffa Digital Archive
+        </h2>
+<p class="font-body-lg text-body-lg text-surface-dim max-w-2xl mx-auto mb-10 leading-relaxed">
+          It takes less than three minutes to translate your first sentence. Every dialect nuance, phrasing, and expression safeguards our shared cultural future.
+        </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-secondary-container hover:bg-secondary-fixed text-primary px-8 py-4 rounded-lg font-title-md text-title-md font-bold transition-all shadow-md active:scale-95" href="#workbench">
+<span>Contribute Your First Sentence</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent hover:bg-surface-container-highest/10 text-surface-container-lowest border border-surface-container-highest/30 px-6 py-4 rounded-lg font-title-md text-title-md font-medium transition-colors" href="#charter">
+<span class="material-symbols-outlined text-base" data-icon="menu_book">menu_book</span>
+<span>Read Contributor Guidelines</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 7. FOOTER (Shared Component)               -->
+<!-- ========================================== -->
+<footer class="bg-surface-container-low border-t border-outline-variant/40">
+<div class="w-full py-12 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand & Sovereign Ownership Notice -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left max-w-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="eco">eco</span>
+<span class="text-title-md font-title-md font-bold text-primary">Gede’uffa Language Project</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          © 2025 Gede’uffa Language Project. Dedicated to ancestral heritage preservation and open linguistic science. Governed under community data sovereignty principles.
+        </p>
+</div>
+<!-- Links Cluster -->
+<div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-label-sm font-label-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#doc">Documentation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#charter">Ethical Data Charter</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#council">Community Elders Council</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#guidelines">Phonetic Guidelines</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact Research Team</a>
+</div>
+</div>
+</footer>
+</body></html>
