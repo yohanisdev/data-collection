@@ -110,4 +110,4 @@ This is a source/configuration review, not a penetration test, formal security a
 - [ ] Mitigate CSV formula injection while documenting the export format and text fidelity.
 - [ ] Configure monitoring, encrypted backups, and perform a restore rehearsal.
 - [ ] Run the project's backend/frontend checks and a production-like staging review before opening access.
-- [ ] Review applicable OWASP ASVS requirements and record findings and remediation owners.
+- [ ] Review applicable OWASP ASVS requirements and record findings and remediation owners. hgl
