@@ -72,7 +72,7 @@ Do not add `-v` unless you intentionally want to delete the local database. The 
 ### Security review
 
 | Area | Current state | Before public launch |
-|---|---|---|
+| --- | --- | --- |
 | Secrets | `.env.example` now has a placeholder signing key; Compose contains fixed database credentials. Compose overrides `DATABASE_URL` with those fixed credentials. | Generate a unique `SECRET_KEY`, use managed secrets or protected deployment secrets, and move database credentials out of Compose. Rotate any real keys/passwords copied from example values. |
 | Production mode and web entry point | Compose forces `APP_ENV=development`, despite the Docker image defaulting to production. Compose publishes backend port 5000 and exposes Vite on 5173. | Create and review a production Compose/deployment configuration. Set `APP_ENV=production`, set `COOKIE_SECURE=1`, build and serve the static frontend, and expose only an HTTPS reverse proxy or managed ingress. Do not publish Vite. |
 | Transport and browser cookies | Admin and contributor cookies are HTTP-only and SameSite=Lax. Secure cookies are controlled by `COOKIE_SECURE`; the sample uses `0`. CSRF tokens are checked for state-changing requests. OWASP recommends secure cookie attributes and treats SameSite as an additional CSRF defense. | Serve only HTTPS, enable secure cookies, and configure appropriate security headers (including HSTS after HTTPS is verified, content type, framing, and referrer protections). Keep CSRF protection enabled and verify proxy handling. |
