@@ -4,6 +4,10 @@ import hmac
 import ipaddress
 from urllib.parse import parse_qs, urlparse
 from datetime import timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from flask import Flask, jsonify, request, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
