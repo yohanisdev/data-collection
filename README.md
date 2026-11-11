@@ -53,6 +53,7 @@ dedicated test database. Create a database named, for example,
 `gedeuffa_test` with non-production credentials, then run:
 
 ```sh
+ source /home/john/community-prototype/.venv/bin/activate
 TEST_DATABASE_URL=postgresql+psycopg://test_user:test_password@localhost:5432/gedeuffa_test \
 TEST_DATABASE_CONFIRM=I_UNDERSTAND_THIS_DELETES_TEST_DATA \
 pytest -q tests/test_postgres_concurrency.py
@@ -72,3 +73,4 @@ Contributor auth uses an opaque random token in an HTTP-only cookie; administrat
 i am adding dataset .
 front end and backend deployed successsfully at cloudflare and render success
 
+full deployment applayed.
