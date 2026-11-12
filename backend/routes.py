@@ -1,4 +1,5 @@
 import secrets
+import hmac
 from functools import wraps
 from flask import Blueprint, jsonify, request, session, current_app, make_response
 from datetime import timedelta, timezone
@@ -177,3 +178,54 @@ def export_dataset():
     for english_text, gedeuffa_text, approval_kind in rows:
         writer.writerow([spreadsheet_safe(english_text),spreadsheet_safe(gedeuffa_text),approval_kind])
     return Response(output.getvalue(), mimetype='text/csv', headers={'Content-Disposition':'attachment; filename=approved-translations.csv'})
+
+@api.post('/admin/provision')
+@limiter.limit('5 per minute')
+def admin_provision():
+    if Admin.query.first():
+        return jsonify(error='Administrator provisioning is permanently disabled.'), 403
+    expected_token = current_app.config.get('INITIAL_ADMIN_TOKEN', '')
+    if not expected_token:
+        return jsonify(error='Administrator provisioning is not configured.'), 403
+    supplied_token = request.headers.get('X-Admin-Setup-Token', '')
+    if not supplied_token or not hmac.compare_digest(supplied_token, expected_token):
+        return jsonify(error='Unauthorized provisioning request.'), 401
+    data = request_body()
+    username = data.get('username')
+    password = data.get('password')
+    if not isinstance(username, str) or not username.strip() or len(username.strip()) > 80:
+        return jsonify(error='Username must be between 1 and 80 characters.'), 400
+    username = username.strip()
+    if not isinstance(password, str) or len(password) < 12:
+        return jsonify(error='Password must be at least 12 characters.'), 400
+    if Admin.query.filter_by(username=username).first():
+        return jsonify(error='Administrator already exists.'), 409
+    admin = Admin(username=username, password_hash=Admin.hash_password(password))
+    db.session.add(admin)
+    db.session.commit()
+    return jsonify(created=True, username=admin.username), 201
+
+@api.post('/admin/sentences/import')
+@admin_required
+@limiter.limit('5 per minute')
+def admin_import_sentences():
+    data = request_body()
+    filename = data.get('filename') or 'english_source_sentences_50000.csv'
+    from pathlib import Path
+    root_dir = Path(current_app.root_path).parent.resolve()
+    target_path = (root_dir / filename).resolve()
+    if not target_path.is_relative_to(root_dir) or target_path.suffix.lower() != '.csv' or not target_path.is_file():
+        return jsonify(error='Invalid or non-existent CSV file.'), 400
+    column = data.get('column')
+    if not column:
+        if filename == 'english_source_sentences_50000.csv':
+            column = 'english'
+        else:
+            column = current_app.config.get('SENTENCE_CSV_COLUMN', 'english_text')
+    dry_run = data.get('dry_run') is True
+    from .importer import import_csv
+    try:
+        stats = import_csv(str(target_path), column=column, dry_run=dry_run)
+    except ValueError as e:
+        return jsonify(error=str(e)), 400
+    return jsonify(stats=stats), 200

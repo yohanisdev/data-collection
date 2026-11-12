@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r backend/requirements.txt
-    startCommand: gunicorn --workers 2 --bind 0.0.0.0:$PORT 'backend:create_app()'
+    startCommand: flask --app backend db upgrade && exec gunicorn --workers 2 --bind 0.0.0.0:$PORT 'backend:create_app()'
     healthCheckPath: /api/health
     envVars:
       - key: APP_ENV
@@ -19,6 +19,10 @@ services:
         sync: false
       - key: EDGE_PROXY_SECRET
         sync: false
+      - key: INITIAL_ADMIN_TOKEN
+        sync: false
+      - key: SENTENCE_CSV_COLUMN
+        value: english
       - key: ALLOWED_HOSTS
         sync: false
       - key: TRUSTED_PROXY_COUNT

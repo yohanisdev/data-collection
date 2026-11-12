@@ -68,6 +68,10 @@ def create_app(test_config=None):
             # Accept the standard PostgreSQL URI format so the same value can
             # be used by PostgreSQL utilities such as pg_dump and pg_restore.
             database_url = database_url.replace('postgresql://', 'postgresql+psycopg://', 1)
+    initial_admin_token = os.getenv('INITIAL_ADMIN_TOKEN', '')
+    if production and initial_admin_token:
+        if len(initial_admin_token) < 32 or len(set(initial_admin_token)) < 12:
+            raise RuntimeError('Set INITIAL_ADMIN_TOKEN to a unique, high-entropy secret of at least 32 characters before starting production.')
     try:
         trusted_proxy_count = int(os.getenv('TRUSTED_PROXY_COUNT', '0'))
     except ValueError as error:
@@ -92,6 +96,7 @@ def create_app(test_config=None):
         MAX_CSV_ROWS=int(os.getenv('MAX_CSV_ROWS', '100000')),
         TRUSTED_HOSTS=allowed_hosts or None,
         EDGE_PROXY_SECRET=edge_proxy_secret,
+        INITIAL_ADMIN_TOKEN=initial_admin_token,
     )
     if test_config:
         app.config.update(test_config)
@@ -150,27 +155,35 @@ def create_app(test_config=None):
         print('Database tables created.')
 
     @app.cli.command('create-admin')
-    def create_admin():
+    @__import__('click').option('--username', default=None, help='Admin username.')
+    @__import__('click').option('--password', default=None, help='Admin password (12+ characters).')
+    def create_admin(username=None, password=None):
         from getpass import getpass
         from .models import Admin
-        username = input('Admin username: ').strip()
-        if not username:
+        u = (username or os.getenv('ADMIN_USERNAME') or '').strip()
+        if not u:
+            u = input('Admin username: ').strip()
+        if not u:
             raise SystemExit('Username cannot be blank.')
-        password = getpass('Admin password (12+ characters): ')
-        if len(password) < 12:
+        p = password or os.getenv('ADMIN_PASSWORD')
+        if not p:
+            p = getpass('Admin password (12+ characters): ')
+        if len(p) < 12:
             raise SystemExit('Password must be at least 12 characters.')
-        if Admin.query.filter_by(username=username).first():
+        if Admin.query.filter_by(username=u).first():
             raise SystemExit('That username already exists.')
-        db.session.add(Admin(username=username, password_hash=Admin.hash_password(password)))
+        db.session.add(Admin(username=u, password_hash=Admin.hash_password(p)))
         db.session.commit()
         print('Administrator created.')
 
     @app.cli.command('import-sentences')
     @__import__('click').argument('path', type=__import__('click').Path(exists=True, dir_okay=False))
+    @__import__('click').option('--column', default=None, help='Source CSV text column name.')
     @__import__('click').option('--dry-run', is_flag=True, help='Validate and report without storing rows.')
-    def import_sentences(path, dry_run):
+    def import_sentences(path, column, dry_run):
         from .importer import import_csv
-        stats = import_csv(path, app.config['SENTENCE_CSV_COLUMN'], dry_run=dry_run)
+        col = column or app.config['SENTENCE_CSV_COLUMN']
+        stats = import_csv(path, col, dry_run=dry_run)
         print(stats)
 
     @app.get('/')
