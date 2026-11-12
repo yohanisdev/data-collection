@@ -85,3 +85,8 @@ class AuditLog(db.Model):
     action = db.Column(db.String(32), nullable=False)
     detail = db.Column(db.Text)
     created_at = db.Column(db.DateTime(timezone=True), default=now_utc, nullable=False)
+
+class ProvisioningMarker(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    marker_name = db.Column(db.String(64), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), default=now_utc, nullable=False)

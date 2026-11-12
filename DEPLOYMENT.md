@@ -122,16 +122,18 @@ This endpoint is protected by multiple security layers:
 2. In production, it requires the edge proxy secret (`X-Deployment-Proxy: <EDGE_PROXY_SECRET>`).
 3. It requires a session CSRF token (`X-CSRF-Token`).
 4. It enforces strict password length (>= 12 characters) and securely hashes the password with Werkzeug.
-5. It is strictly one-time: if any administrator already exists in the database, it permanently returns `403 Forbidden` (`Administrator provisioning is permanently disabled.`).
+5. It is strictly one-time: it creates a durable record in the `provisioning_marker` table. Even if all administrator records are subsequently deleted, the provisioning endpoint remains permanently disabled (`403 Forbidden`).
 
-Execute the provisioning from a secure terminal:
+Execute the provisioning from a secure terminal. The command reads the password interactively without echoing to the screen, encodes it safely via stdin pipe to prevent shell parsing errors with special characters (such as `"`, `'`, `\`, `$`), and ensures no passwords are saved in your shell history:
 
 ```bash
 RENDER_URL="https://<your-service>.onrender.com"
 EDGE_PROXY_SECRET="<your-edge-proxy-secret>"
 INITIAL_ADMIN_TOKEN="<your-initial-admin-token>"
 ADMIN_USER="<chosen-admin-username>"
-ADMIN_PASS="<chosen-strong-password-12+-chars>"
+
+# Read password without echoing to terminal or recording in shell history
+read -r -s -p "Enter chosen admin password (12+ characters): " ADMIN_PASS; echo
 
 # 1. Fetch CSRF token and establish temporary setup session
 curl -s -c /tmp/setup_cookies.txt \
@@ -140,16 +142,18 @@ curl -s -c /tmp/setup_cookies.txt \
 
 CSRF_TOKEN=$(python3 -c "import json; print(json.load(open('/tmp/csrf.json'))['csrf_token'])")
 
-# 2. Provision initial administrator
+# 2. Provision initial administrator safely via stdin (preserves special characters)
+python3 -c 'import json, os, sys; print(json.dumps({"username": os.environ["ADMIN_USER"], "password": sys.stdin.read().rstrip("\n")}))' <<< "$ADMIN_PASS" | \
 curl -s -b /tmp/setup_cookies.txt -c /tmp/setup_cookies.txt -X POST \
   -H "Content-Type: application/json" \
   -H "X-Deployment-Proxy: $EDGE_PROXY_SECRET" \
   -H "X-CSRF-Token: $CSRF_TOKEN" \
   -H "X-Admin-Setup-Token: $INITIAL_ADMIN_TOKEN" \
-  -d "{\"username\": \"$ADMIN_USER\", \"password\": \"$ADMIN_PASS\"}" \
+  -d @- \
   "$RENDER_URL/api/admin/provision"
 
-# Clean up temporary files
+# Clean up variables and temporary files
+unset ADMIN_PASS
 rm -f /tmp/setup_cookies.txt /tmp/csrf.json
 ```
 
@@ -177,7 +181,9 @@ The dataset `english_source_sentences_50000.csv` is committed in the repository 
    RENDER_URL="https://<your-service>.onrender.com"
    EDGE_PROXY_SECRET="<your-edge-proxy-secret>"
    ADMIN_USER="<your-admin-username>"
-   ADMIN_PASS="<your-admin-password>"
+
+   # Read password securely without echoing
+   read -r -s -p "Enter admin password: " ADMIN_PASS; echo
 
    # Get CSRF token
    curl -s -c /tmp/admin_cookies.txt \
@@ -185,13 +191,16 @@ The dataset `english_source_sentences_50000.csv` is committed in the repository 
      "$RENDER_URL/api/csrf" > /tmp/csrf.json
    CSRF_TOKEN=$(python3 -c "import json; print(json.load(open('/tmp/csrf.json'))['csrf_token'])")
 
-   # Log in
+   # Log in safely via stdin (preserves special characters and avoids history exposure)
+   python3 -c 'import json, os, sys; print(json.dumps({"username": os.environ["ADMIN_USER"], "password": sys.stdin.read().rstrip("\n")}))' <<< "$ADMIN_PASS" | \
    curl -s -b /tmp/admin_cookies.txt -c /tmp/admin_cookies.txt -X POST \
      -H "Content-Type: application/json" \
      -H "X-Deployment-Proxy: $EDGE_PROXY_SECRET" \
      -H "X-CSRF-Token: $CSRF_TOKEN" \
-     -d "{\"username\": \"$ADMIN_USER\", \"password\": \"$ADMIN_PASS\"}" \
+     -d @- \
      "$RENDER_URL/api/admin/auth/login" > /tmp/login.json
+
+   unset ADMIN_PASS
 
    # The login response provides a rotated CSRF token for the authenticated session
    AUTH_CSRF=$(python3 -c "import json; print(json.load(open('/tmp/login.json'))['csrf_token'])")

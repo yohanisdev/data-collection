@@ -4,7 +4,7 @@ import os
 import pytest
 from flask_migrate import upgrade
 from backend import create_app, db
-from backend.models import Admin, Sentence, Contributor, Assignment, Translation, AuditLog, ContributorSession
+from backend.models import Admin, Sentence, Contributor, Assignment, Translation, AuditLog, ContributorSession, ProvisioningMarker
 from backend.importer import import_csv
 
 def test_migration_execution_and_repeatability(tmp_path):
@@ -24,7 +24,7 @@ def test_migration_execution_and_repeatability(tmp_path):
         tables = set(inspector.get_table_names())
         expected_tables = {
             'alembic_version', 'contributor', 'admin', 'contributor_session',
-            'sentence', 'assignment', 'translation', 'audit_log'
+            'sentence', 'assignment', 'translation', 'audit_log', 'provisioning_marker'
         }
         assert expected_tables.issubset(tables)
 
@@ -163,6 +163,8 @@ def test_initial_admin_provisioning_success(client, app):
         assert admin is not None
         assert admin.verify_password('strong-password-1234')
         assert not admin.verify_password('wrong-password')
+        marker = ProvisioningMarker.query.filter_by(marker_name='initial_admin_provisioned').first()
+        assert marker is not None
 
     # Verify the new administrator can log in
     csrf_resp = client.get('/api/csrf')
@@ -171,6 +173,70 @@ def test_initial_admin_provisioning_success(client, app):
         'password': 'strong-password-1234'
     }, headers={'X-CSRF-Token': csrf_resp.json['csrf_token']})
     assert login_resp.status_code == 200
+
+def test_admin_provisioning_with_complex_special_characters_password(client, app):
+    """Verify passwords with special characters (quotes, backslashes, $, unicode) work securely."""
+    setup_token = "secure-setup-token-at-least-32-chars-long!"
+    app.config['INITIAL_ADMIN_TOKEN'] = setup_token
+
+    csrf_resp = client.get('/api/csrf')
+    headers = {
+        'X-CSRF-Token': csrf_resp.json['csrf_token'],
+        'X-Admin-Setup-Token': setup_token,
+    }
+    special_password = 'P@ss"w$ord\\123!&\'<test>🎉'
+    resp = client.post('/api/admin/provision', json={
+        'username': 'special_admin',
+        'password': special_password,
+    }, headers=headers)
+    assert resp.status_code == 201
+
+    # Verify login with the exact special character password succeeds
+    csrf_resp2 = client.get('/api/csrf')
+    login_resp = client.post('/api/admin/auth/login', json={
+        'username': 'special_admin',
+        'password': special_password,
+    }, headers={'X-CSRF-Token': csrf_resp2.json['csrf_token']})
+    assert login_resp.status_code == 200
+
+def test_admin_provisioning_permanently_disabled_even_if_all_admins_deleted(client, app):
+    """Verify that durable marker prevents provisioning even if all admin records are subsequently deleted."""
+    setup_token = "secure-setup-token-at-least-32-chars-long!"
+    app.config['INITIAL_ADMIN_TOKEN'] = setup_token
+
+    # 1. Successfully provision initial administrator
+    csrf_resp = client.get('/api/csrf')
+    headers = {
+        'X-CSRF-Token': csrf_resp.json['csrf_token'],
+        'X-Admin-Setup-Token': setup_token,
+    }
+    r = client.post('/api/admin/provision', json={'username': 'first_admin', 'password': 'valid-password-12'}, headers=headers)
+    assert r.status_code == 201
+
+    with app.app_context():
+        assert Admin.query.count() == 1
+        assert ProvisioningMarker.query.filter_by(marker_name='initial_admin_provisioned').count() == 1
+
+        # 2. Simulate subsequent deletion of all administrator records
+        Admin.query.delete()
+        db.session.commit()
+        assert Admin.query.count() == 0
+
+    # 3. Attempting to use INITIAL_ADMIN_TOKEN to create another administrator MUST fail
+    csrf_resp2 = client.get('/api/csrf')
+    headers2 = {
+        'X-CSRF-Token': csrf_resp2.json['csrf_token'],
+        'X-Admin-Setup-Token': setup_token,
+    }
+    resp = client.post('/api/admin/provision', json={
+        'username': 'attacker_admin',
+        'password': 'valid-password-12'
+    }, headers=headers2)
+
+    assert resp.status_code == 403
+    assert 'permanently disabled' in resp.json['error']
+    with app.app_context():
+        assert Admin.query.count() == 0
 
 def test_unauthorized_admin_provisioning_attempts(client, app):
     """Verify unauthorized attempts to provision administrator are rejected."""
@@ -269,15 +335,53 @@ def test_admin_import_sentences_endpoint(client, app):
     r2 = client.post('/api/admin/sentences/import', json={'filename': '../../etc/passwd'}, headers=headers)
     assert r2.status_code == 400
 
+    r2b = client.post('/api/admin/sentences/import', json={'filename': 'subdir/test.csv'}, headers=headers)
+    assert r2b.status_code == 400
+
+    r2c = client.post('/api/admin/sentences/import', json={'filename': '..\\test.csv'}, headers=headers)
+    assert r2c.status_code == 400
+
+    r2d = client.post('/api/admin/sentences/import', json={'filename': 'test\0.csv'}, headers=headers)
+    assert r2d.status_code == 400
+
     r3 = client.post('/api/admin/sentences/import', json={'filename': 'nonexistent.csv'}, headers=headers)
     assert r3.status_code == 400
 
     # 4. Valid dry run import of repository canonical CSV
+    from backend import limiter
+    limiter.reset()
     r4 = client.post('/api/admin/sentences/import', json={'dry_run': True}, headers=headers)
     assert r4.status_code == 200
     assert r4.json['stats']['imported'] > 0
     with app.app_context():
         assert Sentence.query.count() == 0
+
+    # 5. Idempotent execution: create a dedicated test CSV in repo root
+    from pathlib import Path
+    root_dir = Path(app.root_path).parent.resolve()
+    test_csv = root_dir / 'test_endpoint_import.csv'
+    test_csv.write_text("english\nEndpoint sentence 1\nEndpoint sentence 2\n", encoding='utf-8')
+    try:
+        # First import call: records imported
+        limiter.reset()
+        r5 = client.post('/api/admin/sentences/import', json={'filename': 'test_endpoint_import.csv', 'column': 'english'}, headers=headers)
+        assert r5.status_code == 200
+        assert r5.json['stats']['imported'] == 2
+        assert r5.json['stats']['duplicates'] == 0
+        with app.app_context():
+            assert Sentence.query.count() == 2
+
+        # Second import call (accidental rerun): idempotent, 0 imported, 2 duplicates
+        limiter.reset()
+        r6 = client.post('/api/admin/sentences/import', json={'filename': 'test_endpoint_import.csv', 'column': 'english'}, headers=headers)
+        assert r6.status_code == 200
+        assert r6.json['stats']['imported'] == 0
+        assert r6.json['stats']['duplicates'] == 2
+        with app.app_context():
+            assert Sentence.query.count() == 2
+    finally:
+        if test_csv.is_file():
+            test_csv.unlink()
 
 def test_cli_create_admin_and_import_sentences(app, tmp_path):
     """Verify CLI commands operate non-interactively when provided options."""
@@ -332,7 +436,23 @@ def test_production_security_behavior(monkeypatch):
 
     # Verify edge proxy enforcement in production
     client = prod_app.test_client()
-    # Missing X-Deployment-Proxy header returns 403
-    resp_no_proxy = client.post('/api/admin/provision', json={'username': 'admin', 'password': 'password-12345678'})
+    # 1. Missing X-Deployment-Proxy header returns 403
+    resp_no_proxy = client.post('/api/admin/provision', json={'username': 'admin', 'password': 'password-12345678'}, headers={'Host': 'example.test'})
     assert resp_no_proxy.status_code == 403
     assert 'Use the application API endpoint' in resp_no_proxy.json['error']
+
+    # 2. Invalid X-Deployment-Proxy returns 403
+    resp_bad_proxy = client.get('/api/csrf', headers={'Host': 'example.test', 'X-Deployment-Proxy': 'wrong-proxy-secret-at-least-32-chars!'})
+    assert resp_bad_proxy.status_code == 403
+    assert 'Use the application API endpoint' in resp_bad_proxy.json['error']
+
+    # 3. Valid X-Deployment-Proxy allows request to proceed through edge proxy guard
+    # We bypass redis connection in test client by mocking or checking edge proxy check
+    with prod_app.test_request_context('/api/csrf', headers={'Host': 'example.test', 'X-Deployment-Proxy': '9pV5!cR2@hW7#xM4^tK8&bQ1*zF6$yN3'}):
+        # require_edge_proxy returns None when header matches
+        assert prod_app.preprocess_request() is None
+
+    # 4. Public /api/health does NOT require X-Deployment-Proxy
+    resp_health = client.get('/api/health', headers={'Host': 'example.test'})
+    assert resp_health.status_code == 200
+    assert resp_health.json == {'status': 'ok'}

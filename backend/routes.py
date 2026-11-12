@@ -5,7 +5,7 @@ from flask import Blueprint, jsonify, request, session, current_app, make_respon
 from datetime import timedelta, timezone
 import hashlib
 from . import db, limiter
-from .models import Contributor, ContributorSession, Sentence, Assignment, Translation, Admin, now_utc
+from .models import Contributor, ContributorSession, Sentence, Assignment, Translation, Admin, ProvisioningMarker, now_utc
 from .services import get_next_sentence, submit_translation, review_translation
 
 api = Blueprint('api', __name__)
@@ -182,7 +182,7 @@ def export_dataset():
 @api.post('/admin/provision')
 @limiter.limit('5 per minute')
 def admin_provision():
-    if Admin.query.first():
+    if ProvisioningMarker.query.filter_by(marker_name='initial_admin_provisioned').first() or Admin.query.first():
         return jsonify(error='Administrator provisioning is permanently disabled.'), 403
     expected_token = current_app.config.get('INITIAL_ADMIN_TOKEN', '')
     if not expected_token:
@@ -201,7 +201,9 @@ def admin_provision():
     if Admin.query.filter_by(username=username).first():
         return jsonify(error='Administrator already exists.'), 409
     admin = Admin(username=username, password_hash=Admin.hash_password(password))
+    marker = ProvisioningMarker(marker_name='initial_admin_provisioned')
     db.session.add(admin)
+    db.session.add(marker)
     db.session.commit()
     return jsonify(created=True, username=admin.username), 201
 
@@ -211,10 +213,12 @@ def admin_provision():
 def admin_import_sentences():
     data = request_body()
     filename = data.get('filename') or 'english_source_sentences_50000.csv'
+    if not isinstance(filename, str) or '/' in filename or '\\' in filename or '\0' in filename:
+        return jsonify(error='Invalid filename.'), 400
     from pathlib import Path
     root_dir = Path(current_app.root_path).parent.resolve()
     target_path = (root_dir / filename).resolve()
-    if not target_path.is_relative_to(root_dir) or target_path.suffix.lower() != '.csv' or not target_path.is_file():
+    if target_path.parent != root_dir or target_path.suffix.lower() != '.csv' or not target_path.is_file():
         return jsonify(error='Invalid or non-existent CSV file.'), 400
     column = data.get('column')
     if not column:

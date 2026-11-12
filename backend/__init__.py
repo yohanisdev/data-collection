@@ -159,7 +159,7 @@ def create_app(test_config=None):
     @__import__('click').option('--password', default=None, help='Admin password (12+ characters).')
     def create_admin(username=None, password=None):
         from getpass import getpass
-        from .models import Admin
+        from .models import Admin, ProvisioningMarker
         u = (username or os.getenv('ADMIN_USERNAME') or '').strip()
         if not u:
             u = input('Admin username: ').strip()
@@ -173,6 +173,8 @@ def create_app(test_config=None):
         if Admin.query.filter_by(username=u).first():
             raise SystemExit('That username already exists.')
         db.session.add(Admin(username=u, password_hash=Admin.hash_password(p)))
+        if not ProvisioningMarker.query.filter_by(marker_name='initial_admin_provisioned').first():
+            db.session.add(ProvisioningMarker(marker_name='initial_admin_provisioned'))
         db.session.commit()
         print('Administrator created.')
 
