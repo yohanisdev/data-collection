@@ -70,5 +70,5 @@ Contributor auth uses an opaque random token in an HTTP-only cookie; administrat
 # data-collection
 
 i am adding dataset .
-fina day of deployment is today
+front end and backend deployed successsfully at cloudflare and render success
 
