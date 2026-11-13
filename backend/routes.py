@@ -35,6 +35,7 @@ def admin_required(fn):
     return wrapped
 
 @api.get('/health')
+@limiter.exempt
 def health(): return jsonify(status='ok')
 
 @api.get('/sessions/current')

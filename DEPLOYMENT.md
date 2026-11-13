@@ -45,7 +45,7 @@ Set these in provider secret/configuration dashboards. Never commit production v
 | `SENTENCE_CSV_COLUMN` | Render | `english` (matches `english_source_sentences_50000.csv`). |
 | `COOKIE_SECURE` | Render | `1` |
 | `ALLOWED_HOSTS` | Render | Exact Render hostname, e.g. `gedeuffa-api.onrender.com`; no scheme or paths. |
-| `TRUSTED_PROXY_COUNT` | Render | `0` |
+| `TRUSTED_PROXY_COUNT` | Render | `1` |
 | `ASSIGNMENT_TTL_HOURS` | Render, optional | `24` |
 | `CONTRIBUTOR_SESSION_TTL_DAYS` | Render, optional | `30` |
 
@@ -98,7 +98,7 @@ Follow these exact steps in order. Each step indicates whether it is **[AUTOMATI
    - `SENTENCE_CSV_COLUMN`: `english`
    - `DATABASE_URL`: `<Supabase session pooler URI with sslmode=require>`
    - `RATELIMIT_STORAGE_URI`: `<Upstash rediss:// URI>`
-   - `TRUSTED_PROXY_COUNT`: `0`
+   - `TRUSTED_PROXY_COUNT`: `1`
 5. Click **Create Web Service**. Render builds the service and executes the start command.
 
 ### Step 4: Running database migrations without Render Shell [AUTOMATIC]

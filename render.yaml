@@ -26,4 +26,4 @@ services:
       - key: ALLOWED_HOSTS
         sync: false
       - key: TRUSTED_PROXY_COUNT
-        value: "0"
+        value: "1"

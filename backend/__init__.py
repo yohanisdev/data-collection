@@ -73,7 +73,7 @@ def create_app(test_config=None):
         if len(initial_admin_token) < 32 or len(set(initial_admin_token)) < 12:
             raise RuntimeError('Set INITIAL_ADMIN_TOKEN to a unique, high-entropy secret of at least 32 characters before starting production.')
     try:
-        trusted_proxy_count = int(os.getenv('TRUSTED_PROXY_COUNT', '0'))
+        trusted_proxy_count = int(os.getenv('TRUSTED_PROXY_COUNT', '1' if production else '0'))
     except ValueError as error:
         raise RuntimeError('TRUSTED_PROXY_COUNT must be a non-negative integer.') from error
     if trusted_proxy_count < 0:

@@ -456,3 +456,45 @@ def test_production_security_behavior(monkeypatch):
     resp_health = client.get('/api/health', headers={'Host': 'example.test'})
     assert resp_health.status_code == 200
     assert resp_health.json == {'status': 'ok'}
+
+def test_health_endpoint_exempt_from_rate_limiting(client):
+    """Verify /api/health is exempt from Flask-Limiter and never returns 429,
+    even under rapid consecutive polling (50+ calls and exceeding global 300/hr limit),
+    while rate-limited endpoints continue to enforce their limits."""
+    # 1. Rapidly poll /api/health 350 times (well past the 300/hour global default limit)
+    for _ in range(350):
+        resp = client.get('/api/health')
+        assert resp.status_code == 200
+        assert resp.json == {'status': 'ok'}
+
+    # 2. Verify rate-limited endpoint (/api/contributors, limited to 8/hr) still enforces limit
+    csrf_token = client.get('/api/csrf').json['csrf_token']
+    statuses = []
+    for _ in range(10):
+        res = client.post(
+            '/api/contributors',
+            json={'full_name': 'Test Contributor', 'address_or_community': 'Community A', 'occupation': 'Linguist', 'archive_consent': True},
+            headers={'X-CSRF-Token': csrf_token}
+        )
+        statuses.append(res.status_code)
+    # The first 8 requests are processed, subsequent requests return 429
+    assert 429 in statuses
+    assert statuses[-1] == 429
+
+def test_proxy_fix_configuration(monkeypatch):
+    """Verify ProxyFix extracts client IP from X-Forwarded-For when TRUSTED_PROXY_COUNT is enabled."""
+    from werkzeug.middleware.proxy_fix import ProxyFix
+    from flask import request
+
+    monkeypatch.setenv('TRUSTED_PROXY_COUNT', '1')
+    app = create_app({'TESTING': True, 'SECRET_KEY': 'test-key', 'SQLALCHEMY_DATABASE_URI': 'sqlite://'})
+    assert isinstance(app.wsgi_app, ProxyFix)
+
+    @app.route('/test-ip')
+    def test_ip():
+        return {'remote_addr': request.remote_addr}
+
+    client = app.test_client()
+    res = client.get('/test-ip', environ_base={'REMOTE_ADDR': '10.228.26.203', 'HTTP_X_FORWARDED_FOR': '198.51.100.42'})
+    assert res.json['remote_addr'] == '198.51.100.42'
+
