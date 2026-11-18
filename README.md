@@ -67,9 +67,7 @@ Run `pytest` in the project root. Set `TEST_DATABASE_URL` to a disposable Postgr
 Build the client with `cd frontend && npm run build`. Production API serving uses Gunicorn (`gunicorn 'backend:create_app()'`). Set strong `SECRET_KEY`, `DATABASE_URL`, and `COOKIE_SECURE=1` behind HTTPS. Configure a shared rate-limit Redis service with `RATELIMIT_STORAGE_URI`. The approved CSV export includes only contributors who opted in to AI/research use. Back up PostgreSQL with `pg_dump` and restore with `pg_restore`; keep the original CSV in controlled durable storage.
 
 Contributor auth uses an opaque random token in an HTTP-only cookie; administrator auth uses a signed HTTP-only Flask session. The frontend passes a CSRF token for state-changing operations. Deploy the built client and API on the same origin; cross-origin CORS is not enabled.
-# language-coll
+# language-coll 
 # data-collection
 
-i am adding dataset .
-front end and backend deployed successsfully at cloudflare and render success
 
